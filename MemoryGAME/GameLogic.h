@@ -1,7 +1,9 @@
 ﻿#ifndef GAMELOGIC_H
 #define GAMELOGIC_H
-
+#include <thread> // Pentru std::this_thread::sleep_for
+#include <chrono> // Pentru std::chrono::milliseconds
 #include "Board.h"
+
 
 class GameLogic {
 private:

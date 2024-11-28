@@ -10,8 +10,8 @@ void GameLogic::flipCard(int row, int col) {
             firstCardFlipped = true;
 
             // Întoarce prima carte și notifică frontend-ul
-            board.getCard(row, col).flip();
-            board.notifyFrontend(score); // Transmite scorul către frontend
+            board.getCard(row, col).flip(); // Afișează imaginea primei cărți
+            board.notifyFrontend(score); // Notifică frontend-ul despre actualizarea tablei
         }
         else {
             // A doua carte întoarsă
@@ -19,23 +19,29 @@ void GameLogic::flipCard(int row, int col) {
             firstCardFlipped = false;
 
             // Întoarce a doua carte și notifică frontend-ul
-            board.getCard(row, col).flip();
-            board.notifyFrontend(score);
+            board.getCard(row, col).flip(); // Afișează imaginea celei de-a doua cărți
+            board.notifyFrontend(score); // Actualizează frontend-ul cu ambele imagini
 
             // Verifică dacă există potrivire
             if (areMatches()) {
+                // Cărțile se potrivesc, rămân afișate
                 score++; // Crește scorul
-                board.notifyFrontend(score); // Transmite scorul actualizat
+                board.notifyFrontend(score); // Notifică frontend-ul despre scor
             }
             else {
-                // Dacă nu există potrivire, resetează starea cărților
-                board.getCard(firstCard.first, firstCard.second).flip();
-                board.getCard(secondCard.first, secondCard.second).flip();
-                board.notifyFrontend(score); // Transmite scorul fără modificări
+                // Cărțile nu se potrivesc, se întorc la alb după un delay
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // Delay de 1 secundă
+
+                // Resetează cărțile la starea inițială
+                board.getCard(firstCard.first, firstCard.second).flip(); // Revine la alb prima carte
+                board.getCard(secondCard.first, secondCard.second).flip(); // Revine la alb a doua carte
+                board.notifyFrontend(score); // Notifică frontend-ul pentru a reseta starea
             }
         }
     }
 }
+
+
 
 
 
