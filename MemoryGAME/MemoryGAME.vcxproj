@@ -127,10 +127,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="GameLogic.cpp" />
+    <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Subject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="Card.h" />
+    <ClInclude Include="GameLogic.h" />
     <ClInclude Include="Hehee.h" />
+    <ClInclude Include="Observer.h" />
+    <ClInclude Include="Subject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
