@@ -7,6 +7,7 @@
 #include <QLabel>
 #include "Card.h"
 #include "Observer.h"
+#include "WinWindow.h"
 #include <vector>
 
 class MainWindow : public QMainWindow, public Observer {
@@ -17,14 +18,22 @@ private:
     QLabel* resultLabel;
     std::vector<std::vector<QPushButton*>> buttons;
     std::vector<std::vector<Card>> cards;
+    int currentRows; // Numărul curent de rânduri
+    int currentCols; // Numărul curent de coloane
+
+public:
+    int score;    // Scorul curent
+    int maxScore; // Scorul maxim pentru rundă
 
 public:
     explicit MainWindow(QWidget* parent = nullptr);
 
-  //  void updateCardStyle(int row, int col);
     void updateResult(int result) override; // Notificare de la backend
     void displayBoard(int rows, int cols, const std::vector<std::vector<Card>>& cards);
+    void resetGame(); // Resetează jocul pentru o nouă rundă
 
+    int getCurrentRows() const;
+    int getCurrentCols() const;
 
 signals:
     void flipCard(int row, int col);

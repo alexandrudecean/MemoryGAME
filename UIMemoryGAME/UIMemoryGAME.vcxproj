@@ -165,6 +165,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Instructions.cpp" />
+    <ClCompile Include="Login.cpp" />
     <ClCompile Include="MainWindow.cpp">
       <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">input</DynamicSource>
       <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).moc</QtMocFileName>
@@ -176,6 +178,8 @@
       <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
     </ClCompile>
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="StartScreen.cpp" />
+    <ClCompile Include="WinWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MemoryGAME\MemoryGAME.vcxproj">
@@ -184,6 +188,14 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MainWindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Instructions.h" />
+    <QtMoc Include="Login.h" />
+    <QtMoc Include="StartScreen.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="WinWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(QtMsBuild)\qt.targets" Condition="Exists('$(QtMsBuild)\qt.targets')" />

@@ -25,6 +25,7 @@ public:
     void notifyFrontend(int score);// Notifică frontend-ul despre schimbări
     void addObserver(Observer* observer);
 
+
 };
 
 #endif // BOARD_H
