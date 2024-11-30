@@ -3,7 +3,6 @@
 
 #include <vector>
 
-// Declarație forward
 class Observer;
 
 class Subject {
@@ -15,4 +14,4 @@ public:
     void notifyResult(int result);
 };
 
-#endif // SUBJECT_H
+#endif

@@ -1,5 +1,5 @@
 ﻿#include "Subject.h"
-#include "Observer.h" // Include fișierul complet pentru a folosi Observer
+#include "Observer.h"
 
 void Subject::addObserver(Observer* observer) {
     observers.push_back(observer);
@@ -7,6 +7,6 @@ void Subject::addObserver(Observer* observer) {
 
 void Subject::notifyResult(int result) {
     for (Observer* observer : observers) {
-        observer->updateResult(result); // Acum compilatorul știe detaliile lui Observer
+        observer->updateResult(result);
     }
 }

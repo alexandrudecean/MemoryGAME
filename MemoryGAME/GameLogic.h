@@ -18,10 +18,7 @@ public:
 
     void flipCard(int row, int col); // Gestionarea întoarcerii unei cărți
     bool areMatches() const;         // Verifică dacă cele două cărți sunt la fel
-    int getScore() const { return score; } // Returnează scorul
-
-    void addObserver(Observer* observer); // Adaugă un observator
-    void notifyFrontend(int score);
+    int getScore() const; // Returnează scorul
 };
 
 #endif // GAMELOGIC_H

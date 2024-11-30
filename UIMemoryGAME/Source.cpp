@@ -57,8 +57,6 @@ int main(int argc, char* argv[]) {
             gameLogic->flipCard(row, col); // Gestionare logică a întoarcerii cărților
             });
 
-        // Afișează tabla de joc
-        mainWindow->displayBoard(backend->getRows(), backend->getCols(), backend->getCards());
         mainWindow->show(); // Arată fereastra principală
         });
 

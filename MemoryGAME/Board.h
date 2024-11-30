@@ -15,17 +15,17 @@ private:
 public:
     Board(int rows, int cols);
 
-    void initializeBoard(); // Creează tabla de joc
-    int getRows() const;    // Returnează numărul de rânduri
-    int getCols() const;    // Returnează numărul de coloane
+    void initializeBoard();
+    int getRows() const;   
+    int getCols() const;    
 
-    const std::vector<std::vector<Card>>& getCards() const;            // Returnează un Card modificabil
-    const Card& getCard(int row, int col) const; // Returnează un Card constant
+    const std::vector<std::vector<Card>>& getCards() const;           
+    const Card& getCard(int row, int col) const;
     Card& getCard(int row, int col);
-    void notifyFrontend(int score);// Notifică frontend-ul despre schimbări
+    void notifyFrontend(int score);
     void addObserver(Observer* observer);
 
 
 };
 
-#endif // BOARD_H
+#endif

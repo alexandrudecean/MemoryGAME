@@ -1,5 +1,6 @@
 ﻿#include "MainWindow.h"
 #include <QMessageBox>
+#include <QCoreApplication>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent), currentRows(2), currentCols(2), score(0), maxScore(4) {
@@ -36,19 +37,32 @@ void MainWindow::updateResult(int result) {
     }
 }
 
+
+
 void MainWindow::displayBoard(int rows, int cols, const std::vector<std::vector<Card>>& cards) {
-    QLayoutItem* item;
-    while ((item = boardLayout->takeAt(0))) {
-        delete item->widget();
-        delete item;
+    // Resize the buttons vector if necessary
+    if (buttons.size() != rows || (buttons.size() > 0 && buttons[0].size() != cols)) {
+        // Clear the layout and recreate buttons if the size has changed
+        QLayoutItem* item;
+        while ((item = boardLayout->takeAt(0))) {
+            delete item->widget();
+            delete item;
+        }
+        buttons.resize(rows, std::vector<QPushButton*>(cols, nullptr));
     }
 
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
-            auto* cardButton = new QPushButton(this);
+            if (!buttons[i][j]) {
+                buttons[i][j] = new QPushButton(this);
+                boardLayout->addWidget(buttons[i][j], i, j);
+                connect(buttons[i][j], &QPushButton::clicked, this, [this, i, j]() {
+                    emit flipCard(i, j);
+                    });
+            }
 
             if (cards[i][j].isFlipped()) {
-                cardButton->setStyleSheet(
+                buttons[i][j]->setStyleSheet(
                     QString("QPushButton {"
                         "background-image: url(%1);"
                         "background-position: center;"
@@ -56,24 +70,21 @@ void MainWindow::displayBoard(int rows, int cols, const std::vector<std::vector<
                         "border: 1px solid black;"
                         "width: 100px; height: 150px; }")
                     .arg(QString::fromStdString(cards[i][j].getImagePath())));
+                //buttons[i][j]->raise();
             }
             else {
-                cardButton->setStyleSheet(
+                buttons[i][j]->setStyleSheet(
                     "QPushButton {"
                     "background-color: white;"
                     "border: 1px solid black;"
-                    "width: 200px; height: 250px;"
-                    "}");
+                    "width: 200px; height: 250px; }");
             }
-
-            boardLayout->addWidget(cardButton, i, j);
-
-            connect(cardButton, &QPushButton::clicked, this, [this, i, j]() {
-                emit flipCard(i, j);
-                });
         }
     }
+
+    QCoreApplication::processEvents();
 }
+
 
 void MainWindow::resetGame() {
     currentRows *= 2;

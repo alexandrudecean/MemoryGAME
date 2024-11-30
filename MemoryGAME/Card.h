@@ -10,20 +10,16 @@ private:
     std::string imagePath;
 
 public:
-    Card(int id, const std::string& imagePath)
-        : id(id), flipped(false), imagePath(imagePath) {
-    }
+    Card(int id, const std::string& imagePath);
 
-    int getId() const { return id; }
-    bool isFlipped() const { return flipped; }
-    const std::string& getImagePath() const { return imagePath; }
+    int getId() const;
+    bool isFlipped() const;
+    const std::string& getImagePath() const;
 
-    void flip() { flipped = !flipped; }
-    void reset() { flipped = false; }
+    void flip();
+    void reset();
 
-    bool operator==(const Card& other) const {
-        return id == other.id;
-    }
+    bool operator==(const Card& other) const;
 };
 
-#endif // CARD_H
+#endif
