@@ -116,9 +116,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+  <!--
     <ClCompile Include="..\packages\gmock.1.11.0\lib\native\src\gmock\gmock-all.cc" />
-    <ClCompile Include="..\packages\gmock.1.11.0\lib\native\src\gtest\gtest-all.cc" />
-    <ClCompile Include="..\packages\gmock.1.11.0\lib\native\src\gtest\src\gtest_main.cc" />
+    <ClCompile Include="..\packages\gmock.1.11.0\lib\native\src\gtest\gtest-all.cc" /> -->
+    <ClCompile Include="..\packages\gmock.1.11.0\lib\native\src\gtest\src\gtest_main.cc" /> 
     <ClCompile Include="BoardTests.cpp" />
     <ClCompile Include="CardTests.cpp" />
     <ClCompile Include="GameLogicTests.cpp" />
