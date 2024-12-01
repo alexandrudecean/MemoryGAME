@@ -1,40 +1,53 @@
 ﻿#include "Board.h"
 #include "Observer.h"
-#include<algorithm>
-#include<random>
+#include <algorithm>
+#include <random>
+#include <stdexcept>
 
 
-Board::Board(int rows, int cols) : rows(rows), cols(cols) {}
-
-void Board::initializeBoard() {
-	cards.clear();
-
-	std::vector<Card> cardSet = {
-		Card(1, "../images/wolf.jpg"), Card(1, "../images/wolf.jpg"),
-		Card(2, "../images/car.jpg"), Card(2, "../images/car.jpg"),
-		Card(3, "../images/flower.jpg"), Card(3, "../images/flower.jpg"),
-		Card(4, "../images/dice.jpg"), Card(4, "../images/dice.jpg")
-	};
-
-	std::random_device rd;
-	std::mt19937 g(rd());
-	std::shuffle(cardSet.begin(), cardSet.end(), g);
-
-	int index = 0;
-	for (int i = 0; i < rows; ++i) {
-		std::vector<Card> rowCards;
-		for (int j = 0; j < cols; ++j) {
-			rowCards.push_back(cardSet[index++]);
-		}
-		cards.push_back(rowCards);
+Board::Board(int rows, int cols) : rows(rows), cols(cols) {
+	if (rows <= 0 || cols <= 0) {
+		throw std::invalid_argument("Rows and columns must be positive integers.");
 	}
-
-	notifyFrontend(0);
 }
 
+void Board::initializeBoard() {
+    cards.clear();
 
-const Card& Board::getCard(int row, int col) const {
-	return cards[row][col];
+    int totalCards = rows * cols;
+    if (totalCards % 2 != 0) {
+        throw std::logic_error("Board must have an even number of cells to create pairs.");
+    }
+
+    std::vector<std::string> imagePaths = {
+        "../images/1.jpg",
+        "../images/2.jpg",
+        "../images/3.jpg",
+        "../images/4.jpg"
+    };
+
+    std::vector<Card> cardSet;
+    int pairCount = totalCards / 2;
+    for (int i = 0; i < pairCount; ++i) {
+        int imageIndex = i % imagePaths.size();
+        cardSet.emplace_back(i + 1, imagePaths[imageIndex]);
+        cardSet.emplace_back(i + 1, imagePaths[imageIndex]);
+    }
+
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(cardSet.begin(), cardSet.end(), g);
+
+    int index = 0;
+    for (int i = 0; i < rows; ++i) {
+        std::vector<Card> rowCards;
+        for (int j = 0; j < cols; ++j) {
+            rowCards.push_back(cardSet[index++]);
+        }
+        cards.push_back(rowCards);
+    }
+
+	notifyFrontend(0);
 }
 
 int Board::getRows() const {
@@ -50,6 +63,9 @@ const std::vector<std::vector<Card>>& Board::getCards() const {
 }
 
 Card& Board::getCard(int row, int col) {
+	if (row < 0 || row >= rows || col < 0 || col >= cols) {
+		throw std::out_of_range("Card position out of range.");
+	}
 	return cards[row][col];
 }
 

@@ -20,7 +20,6 @@ public:
 	int getRows() const;
 	int getCols() const;
 	const std::vector<std::vector<Card>>& getCards() const;
-	const Card& getCard(int row, int col) const;
 	Card& getCard(int row, int col);
 
 	void notifyFrontend(int score);
