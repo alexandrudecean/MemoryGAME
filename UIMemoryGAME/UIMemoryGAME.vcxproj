@@ -167,7 +167,7 @@
   <ItemGroup>
     <ClCompile Include="Instructions.cpp" />
     <ClCompile Include="Login.cpp" />
-    <ClCompile Include="MainWindow.cpp">
+    <ClCompile Include="GameWindow.cpp">
       <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">input</DynamicSource>
       <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).moc</QtMocFileName>
       <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
@@ -187,7 +187,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="MainWindow.h" />
+    <QtMoc Include="GameWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Instructions.h" />

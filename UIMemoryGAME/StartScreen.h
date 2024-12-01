@@ -14,10 +14,10 @@ public:
     explicit StartScreen(QWidget* parent = nullptr);
 
 signals:
-    void playButtonClicked(); // Semnal pentru a indica că s-a apăsat butonul Play
+    void playButtonClicked(); 
 
 private slots:
-    void onPlayButtonClicked(); // Slot pentru butonul Play
+    void onPlayButtonClicked(); 
 
 private:
     QLabel* titleLabel;
@@ -25,4 +25,4 @@ private:
     Instructions* instructionsScreen;
 };
 
-#endif // STARTSCREEN_H
+#endif 

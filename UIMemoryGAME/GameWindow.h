@@ -11,7 +11,7 @@
 #include "WinWindow.h"
 #include <vector>
 
-class MainWindow : public QMainWindow, public Observer {
+class GameWindow : public QMainWindow, public Observer {
     Q_OBJECT
 
 private:
@@ -20,11 +20,11 @@ private:
     std::vector<std::vector<QPushButton*>> buttons;
     std::vector<std::vector<Card>> cards;
 public:
-    explicit MainWindow(QWidget* parent = nullptr);
+    explicit GameWindow(QWidget* parent = nullptr);
 
-    void updateResult(int result) override; // Notificare de la backend
+    void updateResult(int result) override; 
     void displayBoard(int rows, int cols, const std::vector<std::vector<Card>>& cards);
-    void resetGame(); // Resetează jocul pentru o nouă rundă
+    void resetGame(); 
 	void gameEnded() override;
 
 signals:
@@ -32,4 +32,4 @@ signals:
     void requestResetBoard();
 };
 
-#endif // MAINWINDOW_H
+#endif

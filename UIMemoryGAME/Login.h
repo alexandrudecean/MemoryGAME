@@ -16,8 +16,8 @@ public:
     explicit Login(QWidget* parent = nullptr);
 
 signals:
-    void startSinglePlayer(const QString& username); // Semnal pentru modul single player
-    void startMultiplayer(const QList<QString>& usernames); // Semnal pentru multiplayer
+    void startSinglePlayer(const QString& username); 
+    void startMultiplayer(const QList<QString>& usernames); 
 
 private slots:
     void onStartClicked();
@@ -31,4 +31,4 @@ private:
     QString selectedMode;
 };
 
-#endif // LOGIN_H
+#endif

@@ -13,7 +13,7 @@ public:
     explicit Instructions(QWidget* parent = nullptr);
 
 signals:
-    void nextButtonClicked(); // Semnal pentru a indica trecerea mai departe
+    void nextButtonClicked();
 
 private slots:
     void onNextButtonClicked();
@@ -24,4 +24,4 @@ private:
     QPushButton* nextButton;
 };
 
-#endif // INSTRUCTIONS_H
+#endif 

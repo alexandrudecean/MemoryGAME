@@ -2,15 +2,14 @@
 
 WinWindow::WinWindow(const QString& message, QWidget* parent)
     : QWidget(parent) {
-    // Dimensiuni mari
+    
     this->setFixedSize(800, 500);
     this->setStyleSheet(
-        "background-color: #FF69B4; " // Roz intens
+        "background-color: #FF69B4; " 
         "border-radius: 25px; "
         "font-family: 'Arial';"
     );
 
-    // Mesajul principal
     messageLabel = new QLabel(message, this);
     messageLabel->setStyleSheet(
         "font-size: 32px; "
@@ -21,7 +20,6 @@ WinWindow::WinWindow(const QString& message, QWidget* parent)
     );
     messageLabel->setAlignment(Qt::AlignCenter);
 
-    // Buton "Play Again"
     playAgainButton = new QPushButton("🔄 Play Again", this);
     playAgainButton->setStyleSheet(
         "QPushButton {"
@@ -41,7 +39,6 @@ WinWindow::WinWindow(const QString& message, QWidget* parent)
         "}"
     );
 
-    // Buton "Exit"
     exitButton = new QPushButton("❌ Exit Game", this);
     exitButton->setStyleSheet(
         "QPushButton {"
@@ -61,19 +58,16 @@ WinWindow::WinWindow(const QString& message, QWidget* parent)
         "}"
     );
 
-    // Layout pentru butoane
     QHBoxLayout* buttonLayout = new QHBoxLayout();
     buttonLayout->addWidget(playAgainButton);
     buttonLayout->addWidget(exitButton);
     buttonLayout->setSpacing(50);
 
-    // Layout principal
     QVBoxLayout* layout = new QVBoxLayout(this);
     layout->addWidget(messageLabel, 0, Qt::AlignCenter);
     layout->addLayout(buttonLayout);
     layout->setSpacing(40);
 
-    // Conectare butoane la semnale
     connect(playAgainButton, &QPushButton::clicked, this, &WinWindow::playAgain);
     connect(exitButton, &QPushButton::clicked, this, &WinWindow::exitGame);
 }

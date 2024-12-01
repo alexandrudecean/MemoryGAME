@@ -28,5 +28,5 @@ StartScreen::StartScreen(QWidget* parent) : QWidget(parent), instructionsScreen(
 }
 
 void StartScreen::onPlayButtonClicked() {
-    emit playButtonClicked(); // Emit semnalul pentru a indica apăsarea butonului Play
+    emit playButtonClicked(); 
 }

@@ -8,19 +8,19 @@
 #include <QHBoxLayout>
 
 class WinWindow : public QWidget {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    explicit WinWindow(const QString& message, QWidget* parent = nullptr);
+	explicit WinWindow(const QString& message, QWidget* parent = nullptr);
 
 signals:
-    void playAgain(); // Semnal pentru a începe o nouă rundă
-    void exitGame();  // Semnal pentru a ieși din joc
+	void playAgain();
+	void exitGame();
 
 private:
-    QLabel* messageLabel;
-    QPushButton* playAgainButton;
-    QPushButton* exitButton;
+	QLabel* messageLabel;
+	QPushButton* playAgainButton;
+	QPushButton* exitButton;
 };
 
-#endif // WINWINDOW_H
+#endif 
