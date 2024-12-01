@@ -45,9 +45,11 @@ void GameLogic::flipCard(int row, int col) {
 	}
 }
 
-
-
-
+void GameLogic::resetGame() {
+	score = 0;
+	firstCardFlipped = false;
+	board.resetBoard();
+}
 
 bool GameLogic::areMatches() const {
 	const Card& card1 = board.getCard(firstCard.first, firstCard.second);

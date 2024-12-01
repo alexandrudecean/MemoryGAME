@@ -19,20 +19,13 @@ private:
     QLabel* resultLabel;
     std::vector<std::vector<QPushButton*>> buttons;
     std::vector<std::vector<Card>> cards;
-    int currentRows; // Numărul curent de rânduri
-    int currentCols; // Numărul curent de coloane
-    Board* board;
-
 public:
-    explicit MainWindow(Board* board, QWidget* parent = nullptr);
+    explicit MainWindow(QWidget* parent = nullptr);
 
     void updateResult(int result) override; // Notificare de la backend
     void displayBoard(int rows, int cols, const std::vector<std::vector<Card>>& cards);
     void resetGame(); // Resetează jocul pentru o nouă rundă
 	void gameEnded() override;
-
-    int getCurrentRows() const;
-    int getCurrentCols() const;
 
 signals:
     void flipCard(int row, int col);

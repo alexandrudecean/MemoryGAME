@@ -17,12 +17,7 @@ public:
 
     void initializeBoard();
     void resetBoard();
-    void incrementScore(); // Incrementează scorul
-    int getScore() const;  // Obține scorul curent
-    int getMaxScore() const; // Obține scorul maxim
-    int score;    // Scorul curent
-    int maxScore; // Scorul maxim pentru rundă
-    void setScore(int newScore);
+    
 
 
     int getRows() const;
@@ -33,7 +28,6 @@ public:
 
     void notifyFrontend(int score);
     void addObserver(Observer* observer);
-    void scoreUpdated(int newScore);
 };
 
 #endif // BOARD_H

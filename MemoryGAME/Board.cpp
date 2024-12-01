@@ -4,26 +4,7 @@
 #include<random>
 
 
-Board::Board(int rows, int cols) : rows(rows), cols(cols), score(0), maxScore((rows* cols) / 2) {}
-
-void Board::incrementScore() {
-    score++;
-    notifyFrontend(score); // Notifică frontend-ul despre noul scor
-}
-
-int Board::getScore() const {
-    return score;
-}
-
-void Board::setScore(int newScore) {
-    score = newScore;
-    notifyFrontend(score); // Notifică frontend-ul despre noul scor
-}
-
-
-int Board::getMaxScore() const {
-    return maxScore;
-}
+Board::Board(int rows, int cols) : rows(rows), cols(cols) {}
 
 
 void Board::initializeBoard() {
