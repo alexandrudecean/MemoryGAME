@@ -11,7 +11,7 @@ protected:
 
 public:
     void addObserver(Observer* observer);
-    //void notifyResult(int result);
+    void notifyResult(int result);
     void notifyGameEnded();
 };
 

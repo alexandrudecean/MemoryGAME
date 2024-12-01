@@ -7,7 +7,7 @@
 class Observer {
 public:
     virtual ~Observer() = default;
-   // virtual void updateResult(int result) = 0; 
+    virtual void updateResult(int result) = 0; 
     virtual void displayBoard(int rows, int cols, const std::vector<std::vector<Card>>& cards) = 0;
     virtual void gameEnded() = 0;
 };

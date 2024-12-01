@@ -56,7 +56,7 @@ void Board::addObserver(Observer* observer) {
 void Board::notifyFrontend(int score) {
     for (auto observer : observers) {
         if (observer) {
-            //observer->updateResult(score); // Actualizează scorul în frontend
+            observer->updateResult(score); // Actualizează scorul în frontend
             observer->displayBoard(getRows(), getCols(), getCards()); // Actualizează tabla de joc
         }
     }

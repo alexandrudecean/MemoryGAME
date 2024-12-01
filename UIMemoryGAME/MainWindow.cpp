@@ -18,11 +18,10 @@ MainWindow::MainWindow(QWidget* parent)
     setCentralWidget(centralWidget);
 }
 
-//void MainWindow::updateResult(int result) {
-//    score = result;
-//    resultLabel->setText(QString("Scor: %1").arg(score));
-//    qDebug() << "Score:" << score << "MaxScore:" << maxScore;
-//}
+void MainWindow::updateResult(int result) {
+    resultLabel->setText(QString("Scor: %1").arg(result));
+    qDebug() << "Score:" << result;
+}
 
 
 

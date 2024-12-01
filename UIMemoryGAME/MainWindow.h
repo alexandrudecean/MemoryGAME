@@ -24,7 +24,7 @@ private:
 public:
     explicit MainWindow(QWidget* parent = nullptr);
 
-   // void updateResult(int result) override; // Notificare de la backend
+    void updateResult(int result) override; // Notificare de la backend
     void displayBoard(int rows, int cols, const std::vector<std::vector<Card>>& cards);
     void resetGame(); // Resetează jocul pentru o nouă rundă
 	void gameEnded() override;
