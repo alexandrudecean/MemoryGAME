@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
         // Creează backend-ul pentru joc
         backend = new Board(2, 4); // Creează tabla
         gameLogic = new GameLogic(*backend); // Creează logica jocului
-        mainWindow = new MainWindow(); // Creează interfața grafică
+        mainWindow = new MainWindow(backend); // Creează interfața grafică
         mainWindow->setWindowTitle("Memory Game - Single Player");
 
         // Adaugă frontend-ul ca observator al backend-ului
@@ -57,6 +57,10 @@ int main(int argc, char* argv[]) {
             gameLogic->flipCard(row, col); // Gestionare logică a întoarcerii cărților
             });
 
+        QObject::connect(mainWindow, &MainWindow::requestResetBoard, [&]() {
+            backend->resetBoard(); // Resetează tabla de joc în backend
+            });
+
         mainWindow->show(); // Arată fereastra principală
         });
 
@@ -67,7 +71,7 @@ int main(int argc, char* argv[]) {
         // Creează backend-ul pentru joc
         backend = new Board(2, 4); // Creează tabla
         gameLogic = new GameLogic(*backend); // Creează logica jocului
-        mainWindow = new MainWindow(); // Creează interfața grafică
+        mainWindow = new MainWindow(backend); // Creează interfața grafică
         mainWindow->setWindowTitle("Memory Game - Multiplayer");
 
         // Adaugă frontend-ul ca observator al backend-ului
@@ -81,8 +85,10 @@ int main(int argc, char* argv[]) {
             gameLogic->flipCard(row, col); // Gestionare logică a întoarcerii cărților
             });
 
-        // Afișează tabla de joc
-        mainWindow->displayBoard(backend->getRows(), backend->getCols(), backend->getCards());
+        QObject::connect(mainWindow, &MainWindow::requestResetBoard, [&]() {
+            backend->resetBoard(); // Resetează tabla de joc în backend
+            });
+
         mainWindow->show(); // Arată fereastra principală
         });
 

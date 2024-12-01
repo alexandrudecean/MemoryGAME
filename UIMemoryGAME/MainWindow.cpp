@@ -2,15 +2,15 @@
 #include <QMessageBox>
 #include <QCoreApplication>
 
-MainWindow::MainWindow(QWidget* parent)
-    : QMainWindow(parent), currentRows(2), currentCols(2) {
+MainWindow::MainWindow(Board* board, QWidget* parent)
+    : QMainWindow(parent), board(board), currentRows(board->getRows()), currentCols(board->getCols()) {
     setWindowTitle("MemoryGame");
 
     auto* centralWidget = new QWidget(this);
     auto* layout = new QVBoxLayout;
 
     boardLayout = new QGridLayout;
-    resultLabel = new QLabel("Scor: 0");
+    resultLabel = new QLabel(QString("Scor: %1").arg(board->getScore())); // Folosește scorul din Board
 
     layout->addLayout(boardLayout);
     layout->addWidget(resultLabel);
@@ -19,9 +19,26 @@ MainWindow::MainWindow(QWidget* parent)
 }
 
 void MainWindow::updateResult(int result) {
-    resultLabel->setText(QString("Scor: %1").arg(result));
-    qDebug() << "Score:" << result;
+    resultLabel->setText(QString("Scor: %1").arg(board->getScore())); // Obține scorul din Board
+
+    // Verificăm dacă scorul atinge maximul
+    if (board->getScore() == board->getMaxScore()) {
+        WinWindow* winWindow = new WinWindow("Congratulations! You've completed the round.", this);
+
+        connect(winWindow, &WinWindow::playAgain, [this, winWindow]() {
+            winWindow->close(); // Închide fereastra de câștig
+            emit requestResetBoard(); // Cere backend-ului să reseteze tabla
+            });
+
+        connect(winWindow, &WinWindow::exitGame, [this, winWindow]() {
+            winWindow->close();
+            close(); // Închide aplicația
+            });
+
+        winWindow->show();
+    }
 }
+
 
 
 
@@ -70,13 +87,14 @@ void MainWindow::displayBoard(int rows, int cols, const std::vector<std::vector<
 
 
 void MainWindow::resetGame() {
-    currentRows *= 2;
-    currentCols *= 2;
+    board->setScore(0); // Resetează scorul din backend
+    resultLabel->setText("Scor: 0"); // Actualizează afișajul
 
-    resultLabel->setText("Scor: 0");
-
-    emit flipCard(-1, -1);
+    // Notifică backend-ul să reinitializeze tabla
+    emit requestResetBoard(); // Emite semnalul pentru resetarea tablei
 }
+
+
 
 void MainWindow::gameEnded() {
     WinWindow* winWindow = new WinWindow("Congratulations! You've completed the round.", this);

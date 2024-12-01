@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include "Card.h"
+#include "Board.h"
 #include "Observer.h"
 #include "WinWindow.h"
 #include <vector>
@@ -20,9 +21,10 @@ private:
     std::vector<std::vector<Card>> cards;
     int currentRows; // Numărul curent de rânduri
     int currentCols; // Numărul curent de coloane
+    Board* board;
 
 public:
-    explicit MainWindow(QWidget* parent = nullptr);
+    explicit MainWindow(Board* board, QWidget* parent = nullptr);
 
     void updateResult(int result) override; // Notificare de la backend
     void displayBoard(int rows, int cols, const std::vector<std::vector<Card>>& cards);
@@ -34,6 +36,7 @@ public:
 
 signals:
     void flipCard(int row, int col);
+    void requestResetBoard();
 };
 
 #endif // MAINWINDOW_H

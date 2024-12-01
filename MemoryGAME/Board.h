@@ -16,16 +16,24 @@ public:
     Board(int rows, int cols);
 
     void initializeBoard();
-    int getRows() const;   
-    int getCols() const;    
+    void resetBoard();
+    void incrementScore(); // Incrementează scorul
+    int getScore() const;  // Obține scorul curent
+    int getMaxScore() const; // Obține scorul maxim
+    int score;    // Scorul curent
+    int maxScore; // Scorul maxim pentru rundă
+    void setScore(int newScore);
 
-    const std::vector<std::vector<Card>>& getCards() const;           
+
+    int getRows() const;
+    int getCols() const;
+    const std::vector<std::vector<Card>>& getCards() const;
     const Card& getCard(int row, int col) const;
     Card& getCard(int row, int col);
+
     void notifyFrontend(int score);
     void addObserver(Observer* observer);
-
-
+    void scoreUpdated(int newScore);
 };
 
-#endif
+#endif // BOARD_H
