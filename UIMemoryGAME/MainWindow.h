@@ -22,15 +22,12 @@ private:
     int currentCols; // Numărul curent de coloane
 
 public:
-    int score;    // Scorul curent
-    int maxScore; // Scorul maxim pentru rundă
-
-public:
     explicit MainWindow(QWidget* parent = nullptr);
 
-    void updateResult(int result) override; // Notificare de la backend
+   // void updateResult(int result) override; // Notificare de la backend
     void displayBoard(int rows, int cols, const std::vector<std::vector<Card>>& cards);
     void resetGame(); // Resetează jocul pentru o nouă rundă
+	void gameEnded() override;
 
     int getCurrentRows() const;
     int getCurrentCols() const;

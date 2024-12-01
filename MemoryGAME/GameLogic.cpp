@@ -27,6 +27,10 @@ void GameLogic::flipCard(int row, int col) {
 				// Cărțile se potrivesc, rămân afișate
 				score++; // Crește scorul
 				board.notifyFrontend(score); // Notifică frontend-ul despre scor
+
+				if (score == (board.getRows() * board.getCols()) / 2) {
+					board.notifyGameEnded();
+				}
 			}
 			else {
 				// Cărțile nu se potrivesc, se întorc la alb după un delay
